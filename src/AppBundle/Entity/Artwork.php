@@ -36,6 +36,13 @@ class Artwork
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date", type="string", length=255)
+     */
+    private $date;
+
       /**
        * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Artist")
        * @ORM\JoinColumn(nullable=false)
@@ -49,6 +56,7 @@ class Artwork
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $image;
+
 
 
     /**
@@ -156,5 +164,29 @@ class Artwork
     {
         return $this->image;
     }
+
+    /**
+     * Set date
+     *
+     * @param string $date
+     *
+     * @return Artwork
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }    
 }
 

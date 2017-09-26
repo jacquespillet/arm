@@ -18,6 +18,7 @@ class ArtworkType extends AbstractType
         $builder->add('title')
                 ->add('description')
                 ->add('image')
+                ->add('date')
                 ->add('artist', EntityType::class, array(
                     'class' => 'AppBundle:Artist',
                     'choice_label' => function($artist){
