@@ -1,0 +1,32 @@
+<body>
+	{% include('AppBundle::navbar.html.twig') %}
+
+	{{ form_start(form) }}
+		<p> coordinate X </p>
+	    {{ form_widget(form.coordinateX, {'attr': {'class': 'coordinateX'}} ) }}
+		<p> coordinate Y </p>
+	    {{ form_widget(form.coordinateY, {'attr': {'class': 'coordinateY'}} ) }}
+		<p> Description </p>
+	    {{ form_widget(form.description, {'attr': {'type':'textarea'} }) }}
+	    {{ form_widget(form.image) }}
+
+	    <input type="submit" value="Create"
+	           class="btn btn-default pull-right" />
+	{{ form_end(form) }}
+
+<p> <img src="{{ asset('uploads/brochures/') ~ artwork.image}}">  </p> 
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('img').click(function(e) {
+    var offset = $(this).offset();
+    $(".coordinateX").val(e.pageX - offset.left);
+    $(".coordinatey").val(e.pageY - offset.top);
+  });
+});
+
+</script>
+
+
+</body>

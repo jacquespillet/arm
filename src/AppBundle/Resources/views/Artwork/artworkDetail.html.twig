@@ -1,0 +1,19 @@
+{% include('AppBundle::navbar.html.twig') %}
+
+<p> {{ artwork.title }} </p> 
+<p> {{ artwork.description }} </p> 
+<p> {{ artwork.date }} </p> 
+<p> {{ artwork.artist.name }} </p> 
+<p> <img src="{{ asset('uploads/brochures/') ~ artwork.image}}">  </p> 
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('img').click(function(e) {
+    var offset = $(this).offset();
+    alert(e.pageX - offset.left);
+    alert(e.pageY - offset.top);
+  });
+});
+
+</script>
