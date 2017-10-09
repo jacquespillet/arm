@@ -30,8 +30,18 @@ class ArtworkController extends Controller
 	    }
 
         return $this->render('AppBundle:Artwork:artworkDetail.html.twig', array(
-        	'title'   => $artwork->getTitle(),
-            'artwork' => $artwork,
+            'artwork' => $artwork
+        ));
+    }
+
+    /**
+     * @Route("/artwork/list", name="list artwork")
+     */
+    public function listArtworkAction(Request $request)
+    {
+        $artworks = $this->getDoctrine()->getRepository(Artwork::class)->findAll();
+        return $this->render('AppBundle:Artwork:artwork_list.html.twig', array(
+            'artworks' => $artworks,
         ));
     }
 }

@@ -45,17 +45,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/artist/list", name="list artist")
-     */
-    public function listArtistAction(Request $request)
-    {
-
-        return $this->render('AppBundle::artist_list.html.twig', array(
-            'form' => 'form',
-        ));
-    }
-
-    /**
      * @Route("/artwork/new", name="new artwork")
      */
     public function newArtworkAction(Request $request)
@@ -91,14 +80,13 @@ class DefaultController extends Controller
         ));
     }
 
-    /**
-     * @Route("/artwork/list", name="list artwork")
-     */
-    public function listArtworkAction(Request $request)
-    {
 
-        return $this->render('AppBundle::artwork_list.html.twig', array(
-            'form' => 'form',
+     /**
+     * @Route("/", name="home")
+     */
+    public function indexAction(Request $request)
+    {
+        return $this->render('AppBundle::index.html.twig', array(
         ));
     }
 
