@@ -112,7 +112,7 @@ class DefaultController extends Controller
         $filename       = $file['filename'];
         $fileextension = $file['extension'];
         $post_data = array(
-            'name' => $filename . $fileextension,
+            'name' => $filename . "." . $fileextension,
             'width' => 32.0,
             'image' => $image_base64,
             'application_metadata' => $this->createMetadata($imagePath, $imageName),
