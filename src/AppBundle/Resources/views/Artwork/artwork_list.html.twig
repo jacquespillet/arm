@@ -1,0 +1,32 @@
+{% include('AppBundle::navbar.html.twig') %}
+
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>artist ID </th>            
+            <th>title</th>
+            <th>description</th>
+            <th>image</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for artwork in artworks %}
+            <tr>
+                <td><a href="{{ path('artwork detail', {'id': artwork.id}) }}">{{ artwork.id }} </a></td>
+                <td><a href="{{ path('artwork detail', {'id': artwork.id}) }}">{{ artwork.artist.name }} </a></td>
+                <td><a href="{{ path('artwork detail', {'id': artwork.id}) }}">{{ artwork.title }} </a></td>
+                <td><a href="{{ path('artwork detail', {'id': artwork.id}) }}">{{ artwork.description }} </a></td>
+                <td><a href="{{ path('artwork detail', {'id': artwork.id}) }}">{{ artwork.image }} </a></td>
+                <td><a href="{{ path('artwork detail', {'id': artwork.id}) }}">{{ artwork.date }} </a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#table_id').DataTable();
+    } );
+</script>
