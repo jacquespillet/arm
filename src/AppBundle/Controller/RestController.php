@@ -43,7 +43,15 @@ class RestController extends Controller
 		->findBy(array('artist' => $artwork->getArtist()));
 		$response["otherWorks"] = json_decode($this->container->get('jms_serializer')->serialize($otherWorks, 'json'), true);
 
+		$comments = $this->getDoctrine()
+		->getRepository(Comment::class)
+		->findBy(array('idArtwork' => $artwork));
+		$response["comments"] = json_decode($this->container->get('jms_serializer')->serialize($comments, 'json'), true);
 
+		$reactions = $this->getDoctrine()
+		->getRepository(Reaction::class)
+		->findBy(array('idArtwork' => $artwork));
+		$response["reactions"] = json_decode($this->container->get('jms_serializer')->serialize($reactions, 'json'), true);
 
 		return new JsonResponse($response);
     }

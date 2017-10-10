@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Comment
@@ -24,6 +26,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Artwork")
      * @ORM\JoinColumn(nullable=false)
+     * @Exclude
      */
     private $idArtwork;
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Reaction
@@ -24,6 +25,7 @@ class Reaction
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Artwork")
      * @ORM\JoinColumn(nullable=false)
+     * @Exclude
      */
     private $idArtwork;
 
