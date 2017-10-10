@@ -127,4 +127,18 @@ class RestController extends Controller
 	    return new JsonResponse($response);
     }
 
+    /**
+     * @Route("/api/users", name="get users")
+     * @Method("GET")     
+     */
+    public function getUsers(Request $request){
+    	$response = array();
+		$users =  $this->getDoctrine()
+		->getRepository(User::class)
+		->findAll();
+		$response = json_decode($this->container->get('jms_serializer')->serialize($users, 'json'), true);
+
+	    return new JsonResponse($response);
+    }
+
 }
