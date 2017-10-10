@@ -137,6 +137,11 @@ class RestController extends Controller
 		->getRepository(User::class)
 		->findAll();
 		$response = json_decode($this->container->get('jms_serializer')->serialize($users, 'json'), true);
+			
+		for($i=0;$i<count($response);$i++){
+			unset($response[$i]["roles"]);
+		}
+
 
 	    return new JsonResponse($response);
     }
