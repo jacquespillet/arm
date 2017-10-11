@@ -1,0 +1,51 @@
+<body>
+	{% include('AppBundle::navbar.html.twig') %}
+	<div class="container">
+		{{ form_start(form, {'attr': {'class': 'form-horizontal'} }) }}
+			<div class="form-group">
+			    {{ form_label(form.title, null,  { 'label_attr': {'class': 'control-label col-sm-2'}}) }}
+			    {{ form_errors(form.title) }}
+			    <div class="col-sm-10">
+				    {{ form_widget(form.title, { 'attr': {'placeholder': 'Artwork Title', 'class':'form-control'}} ) }}
+				</div>
+			</div>
+
+			<div class="form-group">
+			    {{ form_label(form.description, null,  { 'label_attr': {'class': 'control-label col-sm-2'}}) }}
+			    {{ form_errors(form.description) }}
+			    <div class="col-sm-10">
+				    {{ form_widget(form.description, { 'attr': {'placeholder': 'Artwork Description', 'class':'form-control'}} ) }}
+				</div>
+			</div>
+
+			<div class="form-group">
+			    {{ form_label(form.image, null,  { 'label_attr': {'class': 'control-label col-sm-2'}}) }}
+			    {{ form_errors(form.image) }}
+			    <div class="col-sm-10">
+				    {{ form_widget(form.image, { 'attr': {}} ) }}
+				</div>
+			</div>
+
+
+			<div class="form-group">
+			    {{ form_label(form.date, null,  { 'label_attr': {'class': 'control-label col-sm-2'}}) }}
+			    {{ form_errors(form.date) }}
+			    <div class="col-sm-10">
+				    {{ form_widget(form.date, { 'attr': {'placeholder': 'Artwork Date', 'class':'form-control'}} ) }}
+				</div>
+			</div>
+
+
+			<div class="form-group">
+			    {{ form_label(form.artist, null,  { 'label_attr': {'class': 'control-label col-sm-2'}}) }}
+			    {{ form_errors(form.artist) }}
+			    <div class="col-sm-10">
+				    {{ form_widget(form.artist, { 'attr': {'placeholder': '', 'class':'form-control'}} ) }}
+				</div>
+			</div>
+
+		    <input type="submit" value="Create"
+		           class="btn btn-default pull-right" />
+		{{ form_end(form) }}
+	</div>
+</body>

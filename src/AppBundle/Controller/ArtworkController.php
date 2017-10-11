@@ -107,6 +107,11 @@ class ArtworkController extends Controller
                 }
             }
 
+            if($artwork->getMainColor()==null){
+                $artwork->setMainColor("#FFFFFF");
+                $artwork->setFontColor("0");
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($artwork);
             $em->flush();
