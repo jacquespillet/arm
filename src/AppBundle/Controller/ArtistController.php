@@ -66,12 +66,12 @@ class ArtistController extends Controller
 
             return $this->render('AppBundle:Artist:artist_detail.html.twig', array(
                 'artist' => $artist,
+                'works' => array()
             ));        
         }
 
         return $this->render('AppBundle:Artist:artist_new.html.twig', array(
-            'form' => $form->createView(),
-            'works' => array()
+            'form' => $form->createView()
         ));
     }
 
