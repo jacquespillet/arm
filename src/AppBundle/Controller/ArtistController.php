@@ -71,6 +71,7 @@ class ArtistController extends Controller
 
         return $this->render('AppBundle:Artist:artist_new.html.twig', array(
             'form' => $form->createView(),
+            'works' => array()
         ));
     }
 
