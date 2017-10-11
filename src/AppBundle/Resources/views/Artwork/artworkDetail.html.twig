@@ -1,19 +1,51 @@
 {% include('AppBundle::navbar.html.twig') %}
 
-<p> {{ artwork.title }} </p> 
-<p> {{ artwork.description }} </p> 
-<p> {{ artwork.date }} </p> 
-<p> {{ artwork.artist.name }} </p> 
-<p> <img src="{{ asset('uploads/artworks/') ~ artwork.image}}">  </p> 
+<body>
+	<div class="container">
+		<h1> {{ artwork.title }} </h1> 
+		<h2> {{ artwork.artist.name }} </h2> 
+		<h3> {{ artwork.date }} </h3> 
+		<p> <img src="{{ asset('uploads/artwork/') ~ artwork.image}}">  </p> 
+		<p id="openModal"> <a href=""> {{ reactions|length }} Likes </a> </p>	
+
+		<div> {{ artwork.description }} </div> 
+	
+		<h2> Comments </h2>
+		{%for comment in comments%}
+
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">{{comment.idUser.username}}</h3>
+			  </div>
+			  <div class="panel-body">
+			    {{comment.comment}}
+			  </div>
+			</div>
+		{%endfor%}
+	</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Likes</h4>
+      </div>
+      <div class="modal-body">
+      	{% for reaction in reactions %}
+      		<p> {{reaction.idUser.username}} </p>
+      		<hr>
+      	{% endfor %}
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $('img').click(function(e) {
-    var offset = $(this).offset();
-    alert(e.pageX - offset.left);
-    alert(e.pageY - offset.top);
-  });
+$("#openModal").click(function(){
+	$("#myModal").modal('show');
 });
-
 </script>
+
+</body>

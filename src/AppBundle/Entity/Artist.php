@@ -38,6 +38,14 @@ class Artist
     /**
      * @var string
      *
+     * @ORM\Column(name="biography", type="string", length=5000)
+     */
+    private $biography;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="dates", type="string", length=255)
      */
     private $dates;
@@ -76,6 +84,31 @@ class Artist
     {
         return $this->name;
     }
+
+    /**
+     * Set biography
+     *
+     * @param string $biography
+     *
+     * @return Artist
+     */
+    public function setBiography($biography)
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    /**
+     * Get biography
+     *
+     * @return string
+     */
+    public function getBiography()
+    {
+        return $this->biography;
+    }
+
 
     /**
      * Set forename

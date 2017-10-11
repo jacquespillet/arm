@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArtistType extends AbstractType
 {
@@ -13,7 +14,17 @@ class ArtistType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('forename')->add('dates');
+        $builder->add('name')
+        ->add('forename')
+        ->add('dates')
+        ->add('biography', TextareaType::class, 
+            array(
+                'attr' => array(
+                    'rows' => '10',
+                    'cols' => '50',
+                )
+            )
+        );
     }
     
     /**

@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ArtworkType extends AbstractType
 {
@@ -16,7 +17,13 @@ class ArtworkType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title')
-                ->add('description')
+                ->add('description', TextareaType::class, 
+                    array(
+                        'attr' => array(
+                            'rows' => '10',
+                            'cols' => '50',
+                        )
+                    ))
                 ->add('image')
                 ->add('date')
                 ->add('artist', EntityType::class, array(
@@ -25,7 +32,7 @@ class ArtworkType extends AbstractType
                         return $artist->getName();
                     }
                 ))
-                ->add('image', FileType::class, array('label' => 'Brochure (PDF file)'));
+                ->add('image', FileType::class, array('label' => 'Image'));
     }
     
     /**

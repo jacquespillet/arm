@@ -28,7 +28,7 @@ class ArtistController extends Controller
     /**
      * @Route("/artist/detail/{id}", name="artist detail")
      */
-    public function artworkDetailAction(Request $request, $id)
+    public function artistDetailAction(Request $request, $id)
     {
         $artist = $this->getDoctrine()
             ->getRepository(Artist::class)
@@ -40,9 +40,85 @@ class ArtistController extends Controller
             );
         }
 
+        $works = $this->getDoctrine()
+        ->getRepository(Artwork::class)
+        ->findBy(array('artist' => $artist ));
+
         return $this->render('AppBundle:Artist:artist_detail.html.twig', array(
             'artist' => $artist,
+            'works' => $works
         ));
     }
 
+    /**
+     * @Route("/artist/new", name="new artist")
+     */
+    public function newArtistAction(Request $request)
+    {
+        $artist = new Artist();
+        $form = $this->createForm(ArtistType::class, $artist);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($artist);
+            $em->flush();
+
+            return $this->render('AppBundle:Artist:artist_detail.html.twig', array(
+                'artist' => $artist,
+            ));        
+        }
+
+        return $this->render('AppBundle:Artist:artist_new.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+
+    /**
+     * @Route("/artist/edit/{id}", name="edit_artist")
+     */
+    public function EditArtistAction(Request $request, $id)
+    {
+        $artist = $this->getDoctrine()
+            ->getRepository(Artist::class)
+            ->find($id);
+        $form = $this->createForm(ArtistType::class, $artist);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($artist);
+            $em->flush();
+
+            return $this->render('AppBundle:Artist:artist_detail.html.twig', array(
+                'artist' => $artist,
+            ));        
+        }
+
+        return $this->render('AppBundle:Artist:artist_new.html.twig', array(
+            'form' => $form->createView(),
+            'artist' => $artist
+        ));
+    }
+
+
+    /**
+     * @Route("/artist/delete/{id}", name="delete_artist")
+     */
+    public function deleteArtistAction(Request $request, $id)
+    {
+        $artist = $this->getDoctrine()
+            ->getRepository(Artist::class)
+            ->find($id);
+
+        
+        $em = $this->getDoctrine()->getManager();   
+        $em->remove($artist);
+        $em->flush();
+
+        $response = $this->forward('AppBundle:Artist:listArtist', array());
+        return $response;
+
+    }
 }

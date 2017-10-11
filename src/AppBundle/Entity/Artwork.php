@@ -32,7 +32,7 @@ class Artwork
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=5000)
      */
     private $description;
 
@@ -42,6 +42,21 @@ class Artwork
      * @ORM\Column(name="date", type="string", length=255)
      */
     private $date;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mainColor", type="string", length=255, nullable=true)
+     */
+    private $mainColor;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fontColor", type="string", length=255, nullable=true)
+     */
+    private $fontColor;
 
       /**
        * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Artist")
@@ -56,6 +71,7 @@ class Artwork
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $image;
+
 
 
 
@@ -115,6 +131,55 @@ class Artwork
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set mainColor
+     *
+     * @param string $mainColor
+     *
+     * @return Artwork
+     */
+    public function setMainColor($mainColor)
+    {
+        $this->mainColor = $mainColor;
+
+        return $this;
+    }
+
+    /**
+     * Get mainColor
+     *
+     * @return string
+     */
+    public function getMainColor()
+    {
+        return $this->mainColor;
+    }
+
+
+    /**
+     * Set fontColor
+     *
+     * @param string $fontColor
+     *
+     * @return Artwork
+     */
+    public function setFontColor($fontColor)
+    {
+        $this->fontColor = $fontColor;
+
+        return $this;
+    }
+
+    /**
+     * Get fontColor
+     *
+     * @return string
+     */
+    public function getFontColor()
+    {
+        return $this->fontColor;
     }
 
     /**
